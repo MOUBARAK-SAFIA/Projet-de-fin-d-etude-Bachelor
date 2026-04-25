@@ -1,0 +1,156 @@
+/* Auth Modal Specific Styles */
+
+.auth-sidebar {
+  background-color: #0f6f75; /* Teal base */
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Layer 1 - Light diagonal */
+.auth-sidebar::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -50%;
+  width: 200%;
+  height: 120%;
+  background: linear-gradient(135deg, #1898a0 0%, #0f6f75 100%);
+  transform: rotate(35deg);
+  z-index: -2;
+  box-shadow: 0px 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Layer 2 - Dark overlay diagonal */
+.auth-sidebar::after {
+  content: "";
+  position: absolute;
+  bottom: -40%;
+  right: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f6f75 0%, #0b494d 100%);
+  transform: rotate(-45deg);
+  z-index: -1;
+  box-shadow: -10px -20px 40px rgba(0,0,0,0.25);
+}
+
+.auth-tab {
+  position: relative;
+  width: 100%;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: #a8c6d4;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 30px 0 0 30px;
+  display: flex;
+  justify-content: flex-end; /* Align text to right inside the tab for better balance */
+  padding-right: 40px;
+}
+
+.auth-tab:hover:not(.active) {
+  color: white;
+}
+
+.auth-tab.active {
+  background-color: white;
+  color: #0f6f75; /* Teal primary text */
+  margin-left: 20px; /* Indent the left side */
+  width: calc(100% - 20px);
+}
+
+/* Curved cutout effect corners blending into white body */
+.auth-tab.active::before,
+.auth-tab.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.auth-tab.active::before {
+  top: -20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 10px 10px 0 10px white;
+}
+
+.auth-tab.active::after {
+  bottom: -20px;
+  border-top-right-radius: 20px;
+  box-shadow: 10px -10px 0 10px white;
+}
+
+/* Minimalist Input Styles */
+.auth-input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #e5e7eb; /* Default gray-200 */
+  padding: 8px 0;
+  margin-bottom: 24px;
+  transition: border-color 0.3s ease;
+}
+
+.auth-input-group:focus-within {
+  border-color: #0f6f75; /* Teal focus */
+}
+
+.auth-input-group input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #374151; /* Gray-700 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.auth-input-group input::placeholder {
+  color: #9ca3af; /* Gray-400 */
+}
+
+.auth-input-icon {
+  color: #9ca3af;
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.auth-input-group:focus-within .auth-input-icon {
+  color: #0f6f75;
+}
+
+/* Auth Modal responsive */
+@media (max-width: 768px) {
+  .auth-modal-container {
+    flex-direction: column;
+  }
+  .auth-sidebar {
+    width: 100%;
+    flex-direction: row;
+    padding: 16px;
+    justify-content: center;
+    border-radius: 1rem 1rem 0 0;
+  }
+  .auth-tab {
+    width: auto;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 0 4px;
+    justify-content: center;
+  }
+  .auth-tab.active {
+    margin-left: 0;
+    width: auto;
+  }
+  .auth-tab.active::before,
+  .auth-tab.active::after {
+    display: none;
+  }
+}
